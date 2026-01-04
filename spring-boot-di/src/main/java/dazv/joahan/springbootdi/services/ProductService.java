@@ -2,23 +2,35 @@ package dazv.joahan.springbootdi.services;
 
 import dazv.joahan.springbootdi.models.Product;
 import dazv.joahan.springbootdi.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductService {
 
-    private ProductRepository repository = new ProductRepository();
+@Component
+public class ProductService implements IProductService{
 
+    @Autowired
+    private ProductRepository repository;
+
+    @Override
     public List<Product> findAll() {
         return repository.findAll().stream().map(p -> {
-            Double priceImp = p.getPrice() * 1.25d;
-            p.setPrice(priceImp.longValue());
-            return p;
+            Double priceTax = p.getPrice() * 1.25d;
+            //Product newProduct = new Product(p.getId() , p.getName(), priceTax.longValue());
+            Product newProduct = (Product) p.clone();
+            newProduct.setPrice(priceTax.longValue());
+            return newProduct;
         }).collect(Collectors.toList());
     }
 
+    @Override
     public Product findById(Long id) {
-        return repository.findById(id);
+            return repository.findById((long) id);
     }
+
+
+
 }
