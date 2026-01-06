@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
 public class ProductService implements IProductService{
 
     @Autowired
+    public ProductService(IProductRepository repository) {
+        this.repository = repository;
+    }
+
     private IProductRepository repository;
 
     @Override
