@@ -1,7 +1,7 @@
 package dazv.joahan.springbootdi.controllers;
 
 import dazv.joahan.springbootdi.models.Product;
-import dazv.joahan.springbootdi.services.ProductService;
+import dazv.joahan.springbootdi.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,7 @@ import java.util.List;
 public class SomeController {
 
     @Autowired
-    private ProductService service;
+    private IProductService service;
 
     @GetMapping()
     public List<Product> list() {

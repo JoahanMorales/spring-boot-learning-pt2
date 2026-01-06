@@ -1,19 +1,19 @@
 package dazv.joahan.springbootdi.services;
 
 import dazv.joahan.springbootdi.models.Product;
-import dazv.joahan.springbootdi.repositories.ProductRepository;
+import dazv.joahan.springbootdi.repositories.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Component
+@Service
 public class ProductService implements IProductService{
 
     @Autowired
-    private ProductRepository repository;
+    private IProductRepository repository;
 
     @Override
     public List<Product> findAll() {
