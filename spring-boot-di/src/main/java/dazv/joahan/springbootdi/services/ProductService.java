@@ -3,6 +3,7 @@ package dazv.joahan.springbootdi.services;
 import dazv.joahan.springbootdi.models.Product;
 import dazv.joahan.springbootdi.repositories.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,12 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService implements IProductService{
 
+    private IProductRepository repository;
+
     @Autowired
-    public ProductService(IProductRepository repository) {
+    public ProductService(@Qualifier("productRepository") IProductRepository repository) {
         this.repository = repository;
     }
-
-    private IProductRepository repository;
 
     @Override
     public List<Product> findAll() {

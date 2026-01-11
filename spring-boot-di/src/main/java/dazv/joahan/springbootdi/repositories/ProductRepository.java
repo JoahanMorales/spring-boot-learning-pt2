@@ -1,11 +1,13 @@
 package dazv.joahan.springbootdi.repositories;
 
 import dazv.joahan.springbootdi.models.Product;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Primary
 @Repository
 public class ProductRepository implements IProductRepository {
     private List<Product> data;
